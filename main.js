@@ -1,9 +1,7 @@
 var storiesRem = [];
 var containerClasses = ["_5jmm", "_5pcr", "_4arz"];
-
 var domainsBan = ["cnn.com", "fox.com", "msnbc.com"];
 var minBanShares = 200;
-
 var falsify = false;
 
 /**
