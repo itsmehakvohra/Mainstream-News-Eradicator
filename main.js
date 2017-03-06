@@ -4,6 +4,8 @@ var containerClass = ["_5jmm", "_5pcr", "_4arz"];
 var domainsBan = ["cnn.com", "fox.com", "msnbc.com"];
 var sharesBan = ["200"];
 
+var falsify = false;
+
 function eradicateMainstream() {
 
 	chrome.storage.sync.get("eradicate", function(data) {
@@ -20,8 +22,8 @@ function eradicateMainstream() {
 }
 
 function removeDomain(item) {
-	var domainB = item.getElementsByTagName("a");
-	_.each(domainB, function(link){
+	var domain = item.getElementsByTagName("a");
+	_.each(domain, function(link){
 		var url = link.url.toLowerCase();
 		_.each(domainsBan, function(domain) {
 			if (url.indexOf(domain) !== -1) {
@@ -43,6 +45,25 @@ function removeShares(item) {
 	}); 
 }
 
+function removeItem(item, reasonNam, data){
+
+    // set the story to be invisible
+    if (falsify){
+        item.style.opacity = "0.5";
+    } else {
+        item.style.opacity = "0.0";
+        item.style.display = "None";
+    }
+
+    // add this story to the list of killed stories
+    if (removedStories.indexOf(item) == -1){
+        if (falsify){
+            console.log("killed item b/c:" + reasonNam + " and this data:" + data);
+        }
+        removedStories.push(item);
+    }
+
+}
 
 eradicateMainstream();
 
