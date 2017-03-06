@@ -1,5 +1,5 @@
 var storiesRem = [];
-var containerClass = ["_5jmm", "_5pcr", "_4arz"];
+var containerClasses = ["_5jmm", "_5pcr", "_4arz"];
 
 var domainsBan = ["cnn.com", "fox.com", "msnbc.com"];
 var sharesBan = ["200"];
@@ -10,7 +10,7 @@ function eradicateMainstream() {
 
 	chrome.storage.sync.get("eradicate", function(data) {
 		if (data["eradicate"]) {
-			_.each(containerClass, function(containerClass) {
+			_.each(containerClasses, function(containerClass) {
 				posts = document.getElementsByClassName(containerClass);
 				_.each(posts, function(post) {
 					removeDomain(post);
@@ -24,9 +24,9 @@ function eradicateMainstream() {
 function removeDomain(item) {
 	var domain = item.getElementsByTagName("a");
 	_.each(domain, function(link){
-		var url = link.url.toLowerCase();
+		var url = link.href.toLowerCase();
 		_.each(domainsBan, function(domain) {
-			if (url.indexOf(domain) !== -1) {
+			if (href.indexOf(domain) !== -1) {
 				removeItem(item, "link", url);
 			}
 		});
@@ -36,10 +36,10 @@ function removeDomain(item) {
 function removeShares(item) {
 	var sharesB = item.getElementsByClassName("_4arz");
 	_.each(sharesB, function(num) {
-		var shareNum = num.share.toLowerCase();
-		._each(shares, function(share) {
+		var shareNum = num.textContent.toLowerCase();
+		._each(sharesBan, function(share) {
 			if (shareNum.indexOf(share) != -1) {
-				removeItem(item, "num", shareNum)
+				removeItem(item, "number", shareNum)
 			}
 		});
 	}); 
@@ -56,11 +56,11 @@ function removeItem(item, reasonNam, data){
     }
 
     // add this story to the list of killed stories
-    if (removedStories.indexOf(item) == -1){
+    if (storiesRem.indexOf(item) == -1){
         if (falsify){
             console.log("killed item b/c:" + reasonNam + " and this data:" + data);
         }
-        removedStories.push(item);
+        storiesRem.push(item);
     }
 
 }
