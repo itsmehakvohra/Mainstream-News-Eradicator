@@ -38,7 +38,7 @@ function removeShares(item) {
 	_.each(sharesB, function(num) {
 		var shareNum = num.textContent.toLowerCase();
 		._each(sharesBan, function(share) {
-			if (shareNum.indexOf(share) != -1) {
+			if (shareNum.indexOf(share) !== -1) {
 				removeItem(item, "number", shareNum)
 			}
 		});
