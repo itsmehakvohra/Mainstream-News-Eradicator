@@ -1,0 +1,47 @@
+{
+  "manifest_version": 2,
+
+  "name": "Mainstream News Blocker",
+  "version": "1.0",
+
+  "description": "This extension blocks mainstream news.",
+  "icons": { "16" : "icon.png",
+             "48" : "icon.png",
+             "128" : "icon.png" 
+  },
+
+  "author": "Mehak Vohra, CEO of Jamocha Media", 
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Mainstream News Blocker"
+  },
+
+  "homepage_url": "http://www.jamochamedia.com/index.html",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.facebook.com/*", 
+        "https://*.facebook.com/*"
+      ],
+      "js": [
+        "libs/underscore.min.js",
+        "main.js"
+      ]
+    }
+  ],  
+
+  "permissions": [
+    "https://www.facebook.com/",
+    "http://www.facebook.com/",
+    "tabs",
+    "storage"
+  ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
