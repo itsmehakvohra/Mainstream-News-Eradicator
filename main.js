@@ -55,7 +55,7 @@ function eradicateMainstream() {
 function removeShares(item) {
 
 	// Find the element for the number of shares
-	var sharesB = document.querySelectorAll(‘[id^=“js_”]’);
+	var sharesB = document.querySelectorAll(‘[id*=“js_”]’);
 
 	// Loop through those elements
 	_.each(sharesB, function(num) {

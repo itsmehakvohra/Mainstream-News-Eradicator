@@ -1,4 +1,4 @@
-Check out this Mainstream radicator I made.
+Check out this Mainstream Eradicator I made.
 
 Anything with over 200+ likes will also be deleted. 
 

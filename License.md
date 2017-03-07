@@ -2,7 +2,7 @@ The MIT License
 
 
 
-Copyright (c) 2010-2017 Google, Inc. http://angularjs.org
+Copyright (c) 2017 Jamocha Media, LLC.
 
 
 
