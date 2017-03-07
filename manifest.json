@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Mainstream News Blocker",
+  "name": "Mainstream Eradicator",
   "version": "1.0",
 
-  "description": "This extension blocks mainstream news.",
+  "description": "Don't be Mainstream. Get the Good Stuff.",
   "icons": { "16" : "icon.png",
              "48" : "icon.png",
              "128" : "icon.png" 
@@ -15,7 +15,7 @@
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
-    "default_title": "Mainstream News Blocker"
+    "default_title": "Mainstream Eradicator"
   },
 
   "homepage_url": "http://www.jamochamedia.com/index.html",

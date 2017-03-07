@@ -1,6 +1,5 @@
-Check out this Mainstream Newsfeed Eradicator I made as an add-on with code from the "Make Facebook Great Again" Extension and my friend Conner!
+Check out this Mainstream radicator I made.
 
-Anything from CNN, FOX, or MSNBC will be deleted from your newsfeed. 
 Anything with over 200+ likes will also be deleted. 
 
 To add this eradicator to your homepage: 

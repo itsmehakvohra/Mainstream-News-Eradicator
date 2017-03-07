@@ -1,6 +1,5 @@
 var storiesRem = [];
-var containerClasses = ["_5jmm", "_5pcr", "_4arz"];
-var domainsBan = ["cnn.com", "fox.com", "msnbc.com"];
+var containerClasses = ["_5jmm", "_5pcr", "_4arz", "_2x4v"];
 var minBanShares = 200;
 var falsify = false;
 
@@ -52,23 +51,12 @@ function eradicateMainstream() {
 	});
 }
 
-function removeDomain(item) {
-	var domain = item.getElementsByTagName("a");
-	_.each(domain, function(link){
-		var url = link.href.toLowerCase();
-		_.each(domainsBan, function(domain) {
-			if (url.indexOf(domain) !== -1) {
-				removeItem(item, "link", url);
-			}
-		});
-	});
-}
 
 function removeShares(item) {
 
 	// Find the element for the number of shares
-	var sharesB = item.getElementsByClassName("_4arz");
-	
+	var sharesB = document.querySelectorAll(‘[id^=“js_”]’);
+
 	// Loop through those elements
 	_.each(sharesB, function(num) {
 		
@@ -89,7 +77,7 @@ function removeShares(item) {
 	}); 
 }
 
-function removeItem(item, reasonNam, data){
+function removeItem(item, reason, data){
 
     // set the story to be invisible
     if (falsify){
@@ -102,7 +90,7 @@ function removeItem(item, reasonNam, data){
     // add this story to the list of killed stories
     if (storiesRem.indexOf(item) == -1){
         if (falsify){
-            console.log("killed item b/c:" + reasonNam + " and this data:" + data);
+            console.log("this item was killed because" + reason + "with this many likes" + data);
         }
         storiesRem.push(item);
    }
@@ -110,6 +98,3 @@ function removeItem(item, reasonNam, data){
 }
 
 eradicateMainstream();
-
-var kill = _.debounce(eradicateMainstream, 300);
-document.addEventListener("scroll", kill);
