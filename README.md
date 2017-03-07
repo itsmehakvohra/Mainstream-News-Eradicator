@@ -1,6 +1,8 @@
-Check out this Mainstream Eradicator I made.
+Check out this Mainstream Eradicator.
 
-Anything with over 200+ likes will also be deleted. 
+Tired of seeing what's "trending" and want to get to the good stuff?
+
+Anything with over 200+ likes will be deleted.
 
 To add this eradicator to your homepage: 
 
