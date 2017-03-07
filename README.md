@@ -1,10 +1,10 @@
 Check out this Mainstream Eradicator.
 
-Tired of seeing what's "trending" and want to get to the good stuff?
+Tired of seeing what's "trending" on Facebook, and want to get to the good stuff?
 
-Anything with over 200+ likes will be deleted.
+Anything with over 200+ likes will be blocked from your feed.
 
-To add this eradicator to your homepage: 
+To add this eradicator to your feed: 
 
 1. Download the zip file and open it. 
 2. Go to the three vertical dots on the right side of your homepage.
