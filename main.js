@@ -128,7 +128,7 @@ function eradicateMainstream() {
 
 				// Get the data for the post
 				var post = getPostData(postElement);
-console.log(post);
+
 				// Add a class to the post
 				postElement.className += ' ' + checkedPostClass;
 
@@ -187,9 +187,9 @@ function getPostData(postObject) {
 
 			// Get the number for the element
 			var value = getNumberFromString(element.textContent);
-console.log(key + ' => ' + value);
+
 			// If the value is higher
-			/* if (data[key] == null || value > data[key]) */data[key] = value;
+			if (data[key] == null || value > data[key]) data[key] = value;
 
 		});
 
