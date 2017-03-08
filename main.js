@@ -8,8 +8,7 @@ var checkedPostClass = '_eradicate_mainstream_checked';
  *	An array of the classes that are known to contain posts. When
  *	searching the page for posts, we look in this array.
  */
-// var containerClasses = ['_5jmm', '_5pcr', '_2x4v'];
-var containerClasses = ['_5pcr'];
+var containerClasses = ['_5pcr', '_2x4v'];
 
 /**
  *	Checks an individual post to determine if it should
@@ -20,11 +19,24 @@ var containerClasses = ['_5pcr'];
  */
 function auditPostElement(post) {
 
+	/*
+	 *	The 'post' object has the following keys:
+	 * 	 - shares
+	 *	 - likes
+	 *	 - videoViews
+	 *	If the post doesn't have one of those fields, or it simply
+	 *	couldn't be found, the value will be null. Otherwise, it
+	 *	will be the integer value found in the post.
+	 */
+
 	// If the post has too many shares
 	if (post.shares >= 50) return 'Too many shares!';
 
 	// If the post has too many reactions/likes
 	if (post.likes >= 200) return 'Too many likes!';
+
+	// If there are too many video views
+	if (post.videoViews >= 1000) return 'Too many video views!';
 
 }
 
@@ -52,31 +64,45 @@ function removePost(post, reason) {
  */
 function getNumberFromString(numberString) {
 
-	// Strip out any commas and make it all lower case
-	numberString = numberString.trim().split(/\s+/g)[0].replace(/,/g, '').toLowerCase();
+	// The parts
+	var parts = numberString.replace(/,/g, '').toLowerCase().trim().split(/\s+/g);
 
-	// Parse the value to a float
-	var flt = parseFloat(numberString);
+	// The part value
+	var result = null;
 
-	// Define the suffix multipliers
-	var suffixValues = {
-		'k': 1000,
-		'm': 1000000
-	};
+	// Loop through the parts
+	for (var i = 0; i < parts.length; i++) {
 
-	// Get the suffixes
-	var suffixes = Object.keys(suffixValues);
+		// Strip out any commas and make it all lower case
+		numberString = parts[i];
 
-	// Loop through the suffixes
-	for (var suffix in suffixValues) {
+		// Parse the value to a float
+		var flt = parseFloat(numberString);
 
-		// If the suffix is present in the number
-		if (numberString.endsWith(suffix)) flt *= suffixValues[suffix];
+		// Define the suffix multipliers
+		var suffixValues = {
+			'k': 1000,
+			'm': 1000000
+		};
+
+		// Get the suffixes
+		var suffixes = Object.keys(suffixValues);
+
+		// Loop through the suffixes
+		for (var suffix in suffixValues) {
+
+			// If the suffix is present in the number
+			if (numberString.endsWith(suffix)) flt *= suffixValues[suffix];
+
+		}
+
+		// If the value is better
+		if (!isNaN(flt) && (result == null || flt > result)) result = flt;
 
 	}
 
 	// Return the floating point value as an integer
-	return flt;
+	return result;
 
 }
 
@@ -102,7 +128,7 @@ function eradicateMainstream() {
 
 				// Get the data for the post
 				var post = getPostData(postElement);
-
+console.log(post);
 				// Add a class to the post
 				postElement.className += ' ' + checkedPostClass;
 
@@ -132,16 +158,42 @@ function getPostData(postObject) {
 	var data = {
 		element: postObject,
 		shares: null,
-		likes: null
+		likes: null,
+		videoViews: null
 	};
 
-	// Get the number of shares
-	var sharesElement = postObject.querySelector('.UFIShareLink em');
-	if (sharesElement != null) data.shares = getNumberFromString(sharesElement.textContent);
+	// Define DOM paths to each key
+	var keyDomPaths = {
+		shares: ['.UFIShareLink em', '._ipo ._36_q:nth-child(2) ._4qba'],
+		likes: ['._4arz span'],
+		comments: ['._ipo ._36_q:nth-child(1) ._4qba'],
+		videoViews: ['._50f8', '._ipo ._36_q:nth-child(3) ._4qba']
+	};
 
-	// Get the number of likes
-	var likesElement = postObject.querySelector('.UFILikeSentence ._4arz span');
-	if (likesElement != null) data.likes = getNumberFromString(likesElement.textContent);
+	// Get the keys
+	var keys = Object.keys(keyDomPaths);
+
+	// Loop through the keys
+	for (var i = 0; i < keys.length; i++) {
+
+		// Get the key
+		var key = keys[i];
+
+		// Get the potental elements
+		var elements = postObject.querySelectorAll(keyDomPaths[key].join(','));
+
+		// Loop through the elements
+		_.each(elements, function (element) {
+
+			// Get the number for the element
+			var value = getNumberFromString(element.textContent);
+console.log(key + ' => ' + value);
+			// If the value is higher
+			/* if (data[key] == null || value > data[key]) */data[key] = value;
+
+		});
+
+	}
 
 	// Return the data
 	return data;
