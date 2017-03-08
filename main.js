@@ -48,7 +48,7 @@ function auditPostElement(post) {
 function removePost(post, reason) {
 
 	// Remove the element from the page
-	post.element.style.opacity = '0.2';
+	post.element.style.opacity = '0.0';
 	// item.style.opacity = "0.0";
 	// item.style.display = "none";
 
